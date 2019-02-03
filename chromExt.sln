@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "chromExt(2)", "chromExt\", "{DD8910B6-42F3-4B85-B5A7-F7D14EF58F67}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_53778"
+		Debug.AspNetCompiler.PhysicalPath = "..\..\..\..\..\..\..\Dev\WhatsAppChromExt\chromExt\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_53778\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_53778"
+		Release.AspNetCompiler.PhysicalPath = "..\..\..\..\..\..\..\Dev\WhatsAppChromExt\chromExt\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_53778\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "53778"
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WhatsappUpload", "WhatsappUpload\WhatsappUpload.csproj", "{EC179E1D-94D0-4A64-A305-B82C82E6C888}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DD8910B6-42F3-4B85-B5A7-F7D14EF58F67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD8910B6-42F3-4B85-B5A7-F7D14EF58F67}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD8910B6-42F3-4B85-B5A7-F7D14EF58F67}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD8910B6-42F3-4B85-B5A7-F7D14EF58F67}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{EC179E1D-94D0-4A64-A305-B82C82E6C888}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC179E1D-94D0-4A64-A305-B82C82E6C888}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC179E1D-94D0-4A64-A305-B82C82E6C888}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC179E1D-94D0-4A64-A305-B82C82E6C888}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

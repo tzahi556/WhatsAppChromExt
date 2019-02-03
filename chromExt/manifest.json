@@ -1,0 +1,27 @@
+﻿
+{
+  "manifest_version": 2,
+  "name": "Gohurry",
+  "version": "0.1",
+  "permissions": [
+		"activeTab",
+		"storage",
+		"webNavigation", 
+		"webRequest",
+    "tabs",
+    "downloads",
+		"https://web.whatsapp.com/*"
+	],
+  "browser_action": {
+    "default_icon": "tab-icon.png",
+    "default_title": "Have a good day"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://web.whatsapp.com/"
+      ],
+      "js": ["jquery.min.js","content.js"]
+    }
+  ]
+}
