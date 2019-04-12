@@ -17,11 +17,9 @@ namespace WhatsappUpload
         public static string ImageFolder = ConfigurationManager.AppSettings["ImagesFolder"];
         static void Main(string[] args)
         {
-            
-
             bool IsOk = false;
             string[] fileEntries = Directory.GetFiles(ImageFolder);
-
+           
             foreach (string fileName in fileEntries)
             {
                  IsOk = UploadToFtp(fileName);
@@ -29,6 +27,8 @@ namespace WhatsappUpload
                 if(IsOk) File.Delete(fileName);
             }
 
+            //Console.WriteLine(fileEntries.Length);
+           // Console.ReadLine();
 
             if (IsOk)
             {

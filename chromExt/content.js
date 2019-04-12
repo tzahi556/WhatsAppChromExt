@@ -18,10 +18,10 @@ $(document).ready(function () {
        if (eventClass == "_1JVSX") {
 
            var downloadUrl = $(event.target).attr("src");
-          
+       
            var dateAsName = getImageTime(event.target);
 
-           var dateAsName = getOnlyNumber(phoneNumber) + "_" + getImageTime($(event.target)) + "_1";//Date.now().toString() + index.toString();
+           var dateAsName = getOnlyNumber(phoneNumber) + "_" + getImageTime($(event.target)) + "_9999";//Date.now().toString() + index.toString();
 
            downloadURI(downloadUrl, dateAsName + ".png");
 
@@ -56,88 +56,33 @@ $(document).ready(function () {
                  //  alert(phoneNumber);
              timeOut = setTimeout(function () {
 
-                  var ImageArray = $("._1JVSX");
+                 var ImageArray = $("._1JVSX");
+
+                 //alert(ImageArray.length);
 
                   $(ImageArray).each(function (index) {
-
+                    //  alert($(this).attr("src"));
                       if (index >= ImageArray.length - eval(NoRead)) {
                        
-                        //  alert($(this).attr("src"));
-                         // alert(index);
+                    
                           var downloadUrl = $(this).attr("src");
 
                           var dateAsName =getOnlyNumber(phoneNumber) +"_"+ getImageTime(this)+"_" + index;//Date.now().toString() + index.toString();
                         
-
-                       //   alert(dateAsName)
-                        
                           downloadURI(downloadUrl, dateAsName + ".png");
-                          //  console.log(index + ": " + $(this).text());
                       }
                   });
 
-
                   alert("הכל בוצע בהצלחה!");
 
-
-                //  clearInterval(interId);
-
-                  //alert(downloadUrl);
-                  //chrome.downloads.download({
-                  //    url: downloadUrl,
-                  //    filename: 'my-image-again.png',
-                  //    conflictAction: 'uniquify',
-                  //    saveAs: true
-                  //}, alert());
-               //  download($("._1JVSX:last").attr("src"), "image2.jpg","");
-                 // alert($("._1JVSX:last").attr("src"));
-              }, 10000)
+             
+             },NoRead * 2 * 1000 + 2000)
        } 
 
-       // alert($(Up).attr("class"));
-       // alert($(Down).attr("class"));
-        //  console.log(event);
-        //var fff = $(event.target).attr("class");
-              //
-       // alert(fff);
-       
-
-        
-       //   event.preventDefault() 
-
-        //  event.stopImmediatePropagation();
-       // alert(fff);
-
-      //  var Phone = $(event.target);
-       
-     //  alert($(Phone).parent().find("span[class='_1wjpf']").text());
-    //   
-
-       
-   
-        //if (fff == "_25Ooe") {
-
-        //     //  alert($("._1JVSX:last").attr("src"));
-        //     //  downloadURI($("._1JVSX:last").attr("src"), "helloWorld.png");
-        //}
-        //   alert($("img:last").parent().html());_1JVSX
-
-      // alert(document.getElementsByClassName("_1JVSX")[0].outerHTML);
+     
     });
 
-    //var event = new Event('click');
-    ////    // Listen for the event.
-    //document.addEventListener('click', function (e) { ReadWhatsappData() }, true);
-    //document.dispatchEvent(event);
-    ////setTimeout(function () {
-
-    ////    $("span[class='_1wjpf']").click();// מספר הטלפון
-
-
-    ////}, 100);
-
-   
-
+    
 
 });
 
@@ -161,7 +106,6 @@ function getDayByCurrentFormat(day) {
 
 }
 
-
 function getImageTime(Obj) {
     
     var imageDateTime = "";
@@ -180,7 +124,6 @@ function getImageTime(Obj) {
 
     return imageDateTime;
 }
-
 
 function getFromWhatsappDate(datestring) {
 
@@ -285,12 +228,9 @@ function getFromWhatsappDate(datestring) {
     return res.replace('/', '_').replace('/','_');
 }
 
-
-
 function getOnlyNumber(str) {
     return str.replace(/\D/g, '');
 }
-
 
 function downloadURI(uri, name) {
     var link = document.createElement("a");
@@ -302,116 +242,3 @@ function downloadURI(uri, name) {
     delete link;
 }
 
-
-function ReadWhatsappData() {
-   
-   
-  
-   
-    //try {
-    //   // document.getElementsByClassName("_2wP_Y")[0].click();
-
-    //    //var eventFocus = new Event('focus');
-    //    //var eventClick = new Event('click');
-    //    //document.getElementsById("pane-side")[0].dispatchEvent(eventFocus);
-    //    //document.getElementsByClassName("_2wP_Y")[0].dispatchEvent(eventClick);
-
-    //    var className = "_1wjpf";
-    //    //var event = new Event('focus');
-    //    var eventc = new Event('click');
-    //    // Listen for the event.
-    //   // document.getElementsByClassName(className)[0].addEventListener('focus', function (e) { }, true);
-    //    document.getElementsByClassName(className)[0].addEventListener('click', function (e) { });
-    //    // Dispatch the event.
-    //   // document.getElementsByClassName(className)[0].dispatchEvent(event);
-    //    document.getElementsByClassName(className)[0].dispatchEvent(eventc);
-    //}
-    //catch (err) {
-    //  // alert(err.message);
-    //}
-
-    //// alert($(".OUeyt").html());
-    //// alert($("span[class='_1wjpf']").text());
-    //var allPhones = $("span[class='_1wjpf']");
-    //$(allPhones).each(function (index) {
-
-    //    //  alert($(this).text());
-    //    //  alert($(this).find("span[class='OUeyt']"));
-
-    //});
-
-   // $(document).css("pointer-events", "all");
-     //$("div").removeAttr("style");
-   // alert($("span[class='OUeyt']:last").text());
-  
-    
-   // alert($("._1wjpf:first").html());
-
-
-    $("._2wP_Y:first").css({
-        "border-color": "#C1E0FF",
-        "border-width":"4px", 
-        "border-style": "solid"
-    });
-
-
-    //var eventFocus = new Event('focus');
-    //var eventClick = new Event('click');
-    //document.querySelectorAll('._2wP_Y')[0].dispatchEvent(eventFocus);
-    //document.querySelectorAll('._2wP_Y')[0].dispatchEvent(eventClick);
-
-    //document.querySelectorAll('._2wP_Y')[0].addEventListener('click', function (e) {
-    //    var event = new CustomEvent('custom_event', {
-    //        bubbles: true
-    //    });
-    //    this.dispatchEvent(event);
-    //});
-
-    //$(document).on('custom_event', '._2wP_Y', function () {
-    //    alert('Custom event captured [selector filter]');
-    //});
-
-    //$('._2wP_Y').on('custom_event', function () {
-    //    alert('Custom event captured');
-    //});
-
-
-
-
-    //  setTimeout(function () {
-   // var style = css($(".OUeyt:first"));
-
-    //alert(style);
-    //$(".OUeyt:first").click(function () { alert($(this).css()); return false; });
-  //  $("div,span").removeAttr("style");
-
-   // $("div,span").css("user-select", "");
-   // $("div,span").css("pointer-events", "");
-
-    
-   // $(".OUeyt:first").css("user-select", "all");
-    //alert();
-   // $("div._2EXPL._1f1zm").select();
-  //  $("._2wP_Y:first").dblclick();
-   // $("._2wP_Y:first").dblclick();
-   // }, 200);
-   // $("._1wjpf:first")[0].click();
-    //  $(rrr).parent().removeAttr("style");
-
-
-    
-    var allNoread = $("span[class='OUeyt']");
-    $(allNoread).each(function (index) {
-       //alert($(this).text());//כמות ההודעות
-       var Phone = $(this).parent().parent().parent().parent().prev();
-      // alert($(Phone).find("span[class='_1wjpf']").text());// מספר הטלפון
-       
-    });
-
-
-
-
-    //alert($("#spButtonText").text());.parents() _1wjpf _3NFp9
-
-
-}

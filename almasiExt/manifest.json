@@ -1,0 +1,27 @@
+﻿
+{
+  "manifest_version": 2,
+  "name": "Almasi",
+  "version": "1.1",
+  "permissions": [
+		"activeTab",
+		"storage",
+		"webNavigation", 
+		"webRequest",
+    "tabs",
+    "downloads"
+	
+	],
+  "browser_action": {
+    "default_icon": "tab-icon.png",
+    "default_title": "Almasi Sponser"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.sponser.co.il/*"
+      ],
+      "js": ["jquery.min.js","content.js"]
+    }
+  ]
+}
