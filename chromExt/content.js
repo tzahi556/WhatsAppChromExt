@@ -8,86 +8,103 @@
 
 
 $(document).ready(function () {
-  
-  
+
+
     var timeOut = "";
     var phoneNumber = "";
     $(document).click(function () {
 
-       var eventClass =  $(event.target).attr('class');
-       if (eventClass == "_1JVSX") {
+        var phoneNumber = $("._2UaNq._3mMX1").find("._19RFN").html();
+        var eventClass = $(event.target).attr('class');
 
-           var downloadUrl = $(event.target).attr("src");
+      
+        //if (eventClass == "_3fmQw") {
+
+        //    var downloadUrl = $(event.target).attr("src");
+         
+        //    var dateAsName = getOnlyNumber(phoneNumber) + "_25_1_2019_11_51_9999";//Date.now().toString() + index.toString();
+
+        //    downloadURI(downloadUrl, dateAsName + ".png");
+
+        //    return;
+        //}
+
+        // במידה ומסמן את ההודעה
+        if (eventClass == "_3wpnE") {
+
+            if (!$.trim(getOnlyNumber(phoneNumber))) {
+                alert("לא ניתן להעלות תמונות מאחר וצריך אנשי קשר עם מספרים ולא שמות...");
+                return;
+            }
+
+            var dateAsName = getOnlyNumber(phoneNumber) + "_25_1_2019_11_51_9999";
+            var parentNode = $(event.target).closest('.FTBzM');
+            var ImageLink = $(parentNode).find('img').attr("src");
+            
+            if (ImageLink)
+                 downloadURI(ImageLink, dateAsName + ".png");
+
+        }
        
-           var dateAsName = getImageTime(event.target);
-
-           var dateAsName = getOnlyNumber(phoneNumber) + "_" + getImageTime($(event.target)) + "_9999";//Date.now().toString() + index.toString();
-
-           downloadURI(downloadUrl, dateAsName + ".png");
-
-           return;
-       }
 
 
-   
-
+        return;
 
 
         var Up = $(event.target).closest('._2wP_Y');
         var MainRubricaClass = $(Up).attr("class");
         if (MainRubricaClass != "_2wP_Y") return;
+        var MainData = $(Up).find('._25Ooe');
 
-        var MainData =  $(Up).find('._25Ooe');
-       
         if (MainData) {
 
 
-             phoneNumber = $(MainData).parent().find("span[class='_1wjpf']").text();
-             var NoRead = $(MainData).parent().next().find("span[class='OUeyt']").text();
+            phoneNumber = $(MainData).parent().find("span[class='_1wjpf']").text();
+            var NoRead = $(MainData).parent().next().find("span[class='OUeyt']").text();
 
-            
-             //  לא לשכוח לשנות בכרום שלא לשאול לפני הורדה
-             clearTimeout(timeOut);
 
-             if (!NoRead) {
-                 alert("אין הודעות חדשות למספר - " + phoneNumber);
-                 return;
-             }
-                 //  alert(phoneNumber);
-             timeOut = setTimeout(function () {
+            //  לא לשכוח לשנות בכרום שלא לשאול לפני הורדה
+            clearTimeout(timeOut);
 
-                 var ImageArray = $("._1JVSX");
+            if (!NoRead) {
+                alert("אין הודעות חדשות למספר - " + phoneNumber);
+                return;
+            }
+            //  alert(phoneNumber);
+            timeOut = setTimeout(function () {
 
-                 //alert(ImageArray.length);
+                var ImageArray = $("._1JVSX");
 
-                  $(ImageArray).each(function (index) {
+                //alert(ImageArray.length);
+
+                $(ImageArray).each(function (index) {
                     //  alert($(this).attr("src"));
-                      if (index >= ImageArray.length - eval(NoRead)) {
-                       
-                    
-                          var downloadUrl = $(this).attr("src");
+                    if (index >= ImageArray.length - eval(NoRead)) {
 
-                          var dateAsName =getOnlyNumber(phoneNumber) +"_"+ getImageTime(this)+"_" + index;//Date.now().toString() + index.toString();
-                        
-                          downloadURI(downloadUrl, dateAsName + ".png");
-                      }
-                  });
 
-                  alert("הכל בוצע בהצלחה!");
+                        var downloadUrl = $(this).attr("src");
 
-             
-             },NoRead * 2 * 1000 + 2000)
-       } 
+                        var dateAsName = getOnlyNumber(phoneNumber) + "_" + getImageTime(this) + "_" + index;//Date.now().toString() + index.toString();
 
-     
+                        downloadURI(downloadUrl, dateAsName + ".png");
+                    }
+                });
+
+                alert("הכל בוצע בהצלחה!");
+
+
+            }, NoRead * 2 * 1000 + 2000)
+        }
+
+
     });
 
-    
+
 
 });
 
 function getDayByCurrentFormat(day) {
-   
+
     var dd = day.getDate();
     var mm = day.getMonth() + 1; //January is 0!
     //if (dd < 10) {
@@ -107,11 +124,11 @@ function getDayByCurrentFormat(day) {
 }
 
 function getImageTime(Obj) {
-    
+
     var imageDateTime = "";
     var imageParent = $(Obj).closest('.vW7d1');
     var date = ($(imageParent).prevAll("._3rjxZ")).find("[dir='auto']");//.find("span[dir]");
-    
+
     $(date).each(function (index) {
         if (index == date.length - 1)
             imageDateTime = getFromWhatsappDate($(this).text());
@@ -120,7 +137,7 @@ function getImageTime(Obj) {
 
 
     var timezone = ($(imageParent).find("._3EFt_")).text();
-    imageDateTime += "_" + timezone.replace(':',"_");
+    imageDateTime += "_" + timezone.replace(':', "_");
 
     return imageDateTime;
 }
@@ -129,7 +146,7 @@ function getFromWhatsappDate(datestring) {
 
     var today = new Date();
     var dayInWeek = today.getDay() + 1;
-   
+
 
     var res = datestring;
     if (datestring == "היום") res = getDayByCurrentFormat(today);
@@ -172,12 +189,10 @@ function getFromWhatsappDate(datestring) {
     }
     if (datestring == "רביעי") {
 
-        if (dayInWeek >= 4)
-        {
+        if (dayInWeek >= 4) {
             diffDays = dayInWeek - 4;
         }
-        else
-        {
+        else {
             diffDays = (7 + dayInWeek) - 4;
         }
 
@@ -200,7 +215,7 @@ function getFromWhatsappDate(datestring) {
             diffDays = dayInWeek - 6;
         }
         else {
-            diffDays = (7 + dayInWeek) -6;
+            diffDays = (7 + dayInWeek) - 6;
         }
 
         res = getDayByCurrentFormat(today.addDays(-1 * diffDays));
@@ -225,7 +240,7 @@ function getFromWhatsappDate(datestring) {
     //if (datestring == "שני") res = getDayByCurrentFormat(today.addDays(-4));
     //if (datestring == "ראשון") res = getDayByCurrentFormat(today.addDays(-5));
 
-    return res.replace('/', '_').replace('/','_');
+    return res.replace('/', '_').replace('/', '_');
 }
 
 function getOnlyNumber(str) {

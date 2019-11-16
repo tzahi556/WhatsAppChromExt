@@ -2,7 +2,7 @@
 {
   "manifest_version": 2,
   "name": "GohurryEngine",
-  "version": "1.1",
+  "version": "1.7",
   "permissions": [
 		"activeTab",
 		"storage",
@@ -19,7 +19,21 @@
   "content_scripts": [
     {
       "matches": [
-        "<all_urls>"
+        "http://www.web-cpa.net/*",
+         "https://web-cpa.net/*",
+        "https://www.web-cpa.net/*",
+        "https://hb2.bankleumi.co.il/*",
+        "https://www.mizrahi-tefahot.co.il/*",
+        "https://mto.mizrahi-tefahot.co.il/*",
+        "https://www.mercantile.co.il/MB/business/*",
+        "http://localhost/GoHurry.Web/*",
+        "https://start.telebank.co.il/LoginPages/Logon?multilang=he&t=O&pageKey=home&bank=m",
+        "https://start.telebank.co.il/*",
+        "https://biz2.bankhapoalim.co.il/authenticate/logon/main",
+        "https://start.telebank.co.il/apollo/core/templates/lobby/masterPage.html#/LOGIN_PAGE_SME",
+        "https://start.telebank.co.il/apollo/core/templates/SME/masterPage.html#/CHKVEW"
+
+      
       ],
       "js": ["jquery.min.js","content.js"]
     }

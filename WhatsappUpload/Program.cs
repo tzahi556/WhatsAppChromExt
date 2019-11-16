@@ -22,6 +22,7 @@ namespace WhatsappUpload
            
             foreach (string fileName in fileEntries)
             {
+
                  IsOk = UploadToFtp(fileName);
 
                 if(IsOk) File.Delete(fileName);

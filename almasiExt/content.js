@@ -2,39 +2,25 @@
 
 
 $(document).ready(function () {
-    //debugger
-
-
-    //$.get();
-    //audioElement.addEventListener("load", function () {
-    //    audioElement.play();
-    //}, true);
-
-
-
-
-   // var LastMsgId = "0";
+   
 
     setInterval(function () {
 
         var PushAlertsLink = $("#PushAlertContent2 a:first-child").attr("href");
         var MsgId = getUrlParameter(PushAlertsLink, "MsgId");
         var url = window.location.href;
-
-        if (LastMsgId == "0") {
-            chrome.storage.sync.set({ 'MsgId': MsgId }, function () { });
-           
-        }
-
+     
         chrome.storage.sync.get(['MsgId'], function (result) {
             if (url.indexOf("MsgId") == -1 && result.MsgId != MsgId) {
+            //if (url.indexOf("MsgId") == -1) {
+
                 generator = window.open(PushAlertsLink, "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,top=100,left=100,width=700,height=400");
                 var audioElement = document.createElement('audio');
                 audioElement.setAttribute('src', 'http://sganit.co.il/AlmasiMp3/Industrial.mp3');
                 audioElement.setAttribute('autoplay', 'autoplay');
                 $.get();
                 //audioElement.load()
-                audioElement.play();
+               if (audioElement) audioElement.play();
 
 
                 chrome.storage.sync.set({ 'MsgId': MsgId }, function () { });
@@ -43,10 +29,11 @@ $(document).ready(function () {
             }
 
 
-        }, 30000)
 
-    });
 
+        });
+
+    }, 30000);
 
     $(document).click(function () {
 
