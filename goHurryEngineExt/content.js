@@ -3,6 +3,8 @@
 //var bankUserName = "";
 //var bankPassword = "";
 //var MainData = "";
+
+var ArrayChecks = [];
 $(document).ready(function () {
 
     chrome.storage.sync.get(['bankUserName'], function (result) {
@@ -82,61 +84,20 @@ $(document).ready(function () {
             }
         });
     });
-
-    var ArrayChecks = [];
+   
     $(document).click(function (event) {
 
         // start(0);
 
         // בנקים לאומים הורדה צקים 
         if (location.href.includes("https://hb2.bankleumi.co.il/ebanking/SO") && location.href.includes("BusinessAccountTrx")) {
-
-
-          
-
-
             var targetEle = $(event.target);
-
-            //$(".item-title").each(function (index) {
-            //    if ($(this).text() == "מספר השיק") {
-            //        var CheckNumber = $(this).next().text();
-            //        // alert(CheckNumber);
-
-            //    }
-            //});
-
-
-          
-
             if (targetEle[0].className == "ts-state-title") {
-
-                var data = $(".additional-link").find("span");
-                debugger
-                GetCheckLeumi(0,data);
-
-                //var data = $(".additional-link").find("span");
-
-                //$(".additional-link").find("span").each(function (index) {
-
-
-
-                //    var thisCtrl = this;
-                //    setTimeout(function () {
-                //        $(thisCtrl)[0].click();
-
-                //    }, 5000);
-
-                //    //setTimeout(function () {
-
-                //    //    if ($(".ts-img-responsive").length) {
-
-                //    //        var CheckSrc = $(".ts-img-responsive").attr("src");
-
-                //    //    }
-                //    //}, 5000);
-
-
-                //});
+               
+                ArrayChecks = [];
+                var data = $(".additional-link:visible");//.find("span");
+                // debugger
+                GetCheckLeumi(0, data);
 
             }
 
@@ -227,17 +188,38 @@ $(document).ready(function () {
 
 });
 
-function GetCheckLeumi(counter,data) {
 
-    if (counter < data.length) {
+function GetCheckLeumi(counter, data) {
+
+    if (counter <= data.length) {
         setTimeout(function () {
-            try{
+            try {
+
+                $(".item-title").each(function (index) {
+                    if ($(this).text() == "מספר שיק") {
+                        var CheckNumber = $(this).next().text();
+                        if ($(".ts-img-responsive").length) {
+
+                            var ImageLink = $(".ts-img-responsive").attr("src");
+                            ArrayChecks.push({ ImageLink: ImageLink, CheckNumber: CheckNumber });
+                        }
+
+                    }
+                });
+
+             
                 $("button.close-icon")[0].click();
-            }catch(e){
+
+                if (counter == data.length) downloadURI(ArrayChecks, false);
+            } catch (e) {
+
+
 
             }
             counter++;
+         
             $(data)[counter - 1].click();
+
             GetCheckLeumi(counter, data);
         }, 5000);
     }
