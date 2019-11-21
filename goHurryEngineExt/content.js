@@ -84,41 +84,51 @@ $(document).ready(function () {
             }
         });
     });
-   
+
     $(document).click(function (event) {
 
         // בנקים מזרחי הורדה צקים 
         if (location.href.includes("https://mto.mizrahi-tefahot.co.il/ngOnline/")) {
+
+            ArrayChecks = [];
             var targetEle = $(event.target);
 
-            if ($($(targetEle).parent())[0].className == "sky-page-title") {
+            if ($(targetEle) && $($(targetEle).parent())[0].className == "sky-page-title") {
 
-                $(".chequeWrapper").each(function (index) {
 
-                    var CheckNumber = $($(".chequeDetails >div>div> div:contains('מספר שיק')")[index]).next().text();
-                    var ImageLink = $($(".front")[index]).attr("src");
-
-                    ArrayChecks.push({ ImageLink: ImageLink, CheckNumber: CheckNumber });
+                $(".ng-scope.k-plus.link").each(function (index) {
+                    $(this)[0].click();
 
                 });
 
 
+                setTimeout(function () {
+                    $(".chequeWrapper").each(function (index) {
+
+                        var CheckNumber = $($(".chequeDetails >div>div> div:contains('מספר שיק')")[index]).next().text();
+                        var ImageLink = $($(".front")[index]).attr("src");
+
+                        ArrayChecks.push({ ImageLink: ImageLink, CheckNumber: $.trim(CheckNumber) });
+
+                    });
 
 
-                downloadURI(ArrayChecks, false);
-                ArrayChecks = [];
+                    downloadURI(ArrayChecks, false);
+                  
+                }, 10000);
+
             }
 
 
-            
-          
+
+
         }
 
         // בנקים לאומי הורדה צקים 
         if (location.href.includes("https://hb2.bankleumi.co.il/ebanking/SO") && location.href.includes("BusinessAccountTrx")) {
             var targetEle = $(event.target);
             if (targetEle[0].className == "ts-state-title") {
-               
+
                 ArrayChecks = [];
                 var data = $(".additional-link:visible");//.find("span");
                 // debugger
@@ -157,7 +167,7 @@ $(document).ready(function () {
 
             }
         }
-        // להוריד את האיפ בפרוד
+            // להוריד את האיפ בפרוד
         else if (1 == 2) {
 
             //*********************************** קוד סיסמא
@@ -229,7 +239,7 @@ function GetCheckLeumi(counter, data) {
                     }
                 });
 
-             
+
                 $("button.close-icon")[0].click();
 
                 if (counter == data.length) downloadURI(ArrayChecks, false);
@@ -239,7 +249,7 @@ function GetCheckLeumi(counter, data) {
 
             }
             counter++;
-         
+
             $(data)[counter - 1].click();
 
             GetCheckLeumi(counter, data);
@@ -248,26 +258,32 @@ function GetCheckLeumi(counter, data) {
 }
 
 function downloadURI(urlsArray, name1) {
-    $("<a />", {
-        "download": "data.json",
-        "href": "data:application/json," + encodeURIComponent(JSON.stringify(urlsArray))
-    }).appendTo("body")
-  .click(function () {
-      $(this).remove()
-  })[0].click()
-    //for (var i = 0; i < urlsArray.length; i++) {
 
-    //    var uri = urlsArray[i].ImageLink;
-    //    var name = urlsArray[i].CheckNumber;
-    //    var link = document.createElement("a");
-    //    link.download = name;
-    //    link.href = uri;
-    //    document.body.appendChild(link);
-    //    link.click();
-    //    document.body.removeChild(link);
-    //    delete link;
-    //}
 
+    var str = JSON.stringify(urlsArray);
+    var data = encode(str);
+    var blob = new Blob([data], {
+        type: 'application/octet-stream'
+    });
+    saveAs(blob, "data.json");
+
+    //  $("<a />", {
+    //      "download": "data.json",
+    //      "href": "data:application/json," + encodeURIComponent(JSON.stringify(urlsArray))
+    //  }).appendTo("body")
+    //.click(function () {
+    //    $(this).remove()
+    //})[0].click()
+
+
+}
+
+var encode = function (s) {
+    var out = [];
+    for (var i = 0; i < s.length; i++) {
+        out[i] = s.charCodeAt(i);
+    }
+    return new Uint8Array(out);
 }
 
 
