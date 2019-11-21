@@ -87,9 +87,34 @@ $(document).ready(function () {
    
     $(document).click(function (event) {
 
-        // start(0);
+        // בנקים מזרחי הורדה צקים 
+        if (location.href.includes("https://mto.mizrahi-tefahot.co.il/ngOnline/")) {
+            var targetEle = $(event.target);
 
-        // בנקים לאומים הורדה צקים 
+            if ($($(targetEle).parent())[0].className == "sky-page-title") {
+
+                $(".chequeWrapper").each(function (index) {
+
+                    var CheckNumber = $($(".chequeDetails >div>div> div:contains('מספר שיק')")[index]).next().text();
+                    var ImageLink = $($(".front")[index]).attr("src");
+
+                    ArrayChecks.push({ ImageLink: ImageLink, CheckNumber: CheckNumber });
+
+                });
+
+
+
+
+                downloadURI(ArrayChecks, false);
+                ArrayChecks = [];
+            }
+
+
+            
+          
+        }
+
+        // בנקים לאומי הורדה צקים 
         if (location.href.includes("https://hb2.bankleumi.co.il/ebanking/SO") && location.href.includes("BusinessAccountTrx")) {
             var targetEle = $(event.target);
             if (targetEle[0].className == "ts-state-title") {
@@ -102,9 +127,6 @@ $(document).ready(function () {
             }
 
         }
-
-
-
 
         //צקים מרכנטיל
         if (location.href.includes("https://start.telebank.co.il/apollo/core/templates/SME") && location.href.includes("CHKVEW")) {
@@ -135,7 +157,7 @@ $(document).ready(function () {
 
             }
         }
-            // להוריד את האיפ בפרוד
+        // להוריד את האיפ בפרוד
         else if (1 == 2) {
 
             //*********************************** קוד סיסמא
