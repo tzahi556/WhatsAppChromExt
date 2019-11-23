@@ -87,46 +87,37 @@ $(document).ready(function () {
 
     $(document).click(function (event) {
 
+        var targetEle = $(event.target);
+
         // בנקים מזרחי הורדה צקים 
-        if (location.href.includes("https://mto.mizrahi-tefahot.co.il/ngOnline/")) {
-
+        if (location.href.includes("https://mto.mizrahi-tefahot.co.il/ngOnline/") && $(targetEle) && $($(targetEle).parent())[0].className == "sky-page-title") {
             ArrayChecks = [];
-            var targetEle = $(event.target);
 
-            if ($(targetEle) && $($(targetEle).parent())[0].className == "sky-page-title") {
+            $(".ng-scope.k-plus.link").each(function (index) {
+                $(this)[0].click();
 
+            });
 
-                $(".ng-scope.k-plus.link").each(function (index) {
-                    $(this)[0].click();
+            setTimeout(function () {
+                $(".chequeWrapper").each(function (index) {
+
+                    var CheckNumber = $($(".chequeDetails >div>div> div:contains('מספר שיק')")[index]).next().text();
+                    var ImageLink = $($(".front")[index]).attr("src");
+
+                    ArrayChecks.push({ ImageLink: ImageLink, CheckNumber: $.trim(CheckNumber) });
 
                 });
 
 
-                setTimeout(function () {
-                    $(".chequeWrapper").each(function (index) {
+                downloadURI(ArrayChecks, false);
 
-                        var CheckNumber = $($(".chequeDetails >div>div> div:contains('מספר שיק')")[index]).next().text();
-                        var ImageLink = $($(".front")[index]).attr("src");
-
-                        ArrayChecks.push({ ImageLink: ImageLink, CheckNumber: $.trim(CheckNumber) });
-
-                    });
-
-
-                    downloadURI(ArrayChecks, false);
-                  
-                }, 10000);
-
-            }
-
-
-
+            }, 10000);
 
         }
 
         // בנקים לאומי הורדה צקים 
-        if (location.href.includes("https://hb2.bankleumi.co.il/ebanking/SO") && location.href.includes("BusinessAccountTrx")) {
-            var targetEle = $(event.target);
+        else if (location.href.includes("https://hb2.bankleumi.co.il/ebanking/SO") && location.href.includes("BusinessAccountTrx")) {
+
             if (targetEle[0].className == "ts-state-title") {
 
                 ArrayChecks = [];
@@ -139,9 +130,9 @@ $(document).ready(function () {
         }
 
         //צקים מרכנטיל
-        if (location.href.includes("https://start.telebank.co.il/apollo/core/templates/SME") && location.href.includes("CHKVEW")) {
+        else if (location.href.includes("https://start.telebank.co.il/apollo/core/templates/SME") && location.href.includes("CHKVEW")) {
 
-            var targetEle = $(event.target);
+
 
             if (targetEle[0].tagName == "A") {
                 return;
@@ -167,8 +158,8 @@ $(document).ready(function () {
 
             }
         }
-            // להוריד את האיפ בפרוד
-        else if (1 == 2) {
+
+        else {
 
             //*********************************** קוד סיסמא
             try {
