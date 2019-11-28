@@ -89,6 +89,31 @@ $(document).ready(function () {
 
         var targetEle = $(event.target);
 
+        // פועלים  הורדה צקים 
+        if (location.href.includes("https://biz2.bankhapoalim.co.il/ng-portals/biz/he/current-account/transactions") && $(targetEle) && $($(targetEle))[0].id == "main-title") {
+            ArrayChecks = [];
+
+            $("IFRAME").remove();
+
+            $(".icon-cell.icon.icon-ActionsChecks").each(function (index) {
+                $(this)[0].click();
+
+            });
+
+            setTimeout(function () {
+                $("[id^='check-images-']").each(function (index) {
+                    var CheckNumber = ($(this).attr("id")).replace("check-images-", "");
+                    var Image = $(this).find("img");
+                    var ImageLink = getBase64Image(Image[0]);
+                    ArrayChecks.push({ ImageLink: ImageLink, CheckNumber: $.trim(CheckNumber) });
+
+                });
+                downloadURI(ArrayChecks, false);
+
+            }, 10000);
+
+        }
+
         // בנקים מזרחי הורדה צקים 
         if (location.href.includes("https://mto.mizrahi-tefahot.co.il/ngOnline/") && $(targetEle) && $($(targetEle).parent())[0].className == "sky-page-title") {
             ArrayChecks = [];
@@ -134,6 +159,7 @@ $(document).ready(function () {
 
 
 
+
             if (targetEle[0].tagName == "A") {
                 return;
             }
@@ -144,21 +170,25 @@ $(document).ready(function () {
                 if (ArrayChecks.length > 0)
                     downloadURI(ArrayChecks, false);
                 ArrayChecks = [];
+            } else {
+
+                //  else if (targetEle[0].className != "nextArrow ng-scope" && !(targetEle[0].className).includes("prevArrow")) {
+                setTimeout(function () {
+                    $(".contentChecks").find("img").each(function (index) {
+
+                        var CheckNumber = $(".popupHeaderItem:nth-child(2)").find("span").text();
+                        ArrayChecks.push({ ImageLink: $(this).attr("src"), CheckNumber: CheckNumber });
+                        $(".nextArrow")[0].click();
+
+
+                    });
+                }, 2000);
+
             }
 
-            else if (targetEle[0].className != "nextArrow ng-scope" && !(targetEle[0].className).includes("prevArrow")) {
-
-                $(".contentChecks").find("img").each(function (index) {
-                    var CheckNumber = $(".popupHeaderItem:nth-child(2)").find("span").text();
-                    ArrayChecks.push({ ImageLink: $(this).attr("src"), CheckNumber: CheckNumber });
-                    $(".nextArrow")[0].click();
-
-
-                });
-
-            }
+            // }
         }
-
+        
         else {
 
             //*********************************** קוד סיסמא
@@ -211,6 +241,18 @@ $(document).ready(function () {
 
 });
 
+
+function getBase64Image(img) {
+    var canvas = document.createElement("canvas");
+    //img.width = img.width + 300;
+    //img.height = img.height + 250;
+    canvas.width = img.width;
+    canvas.height = img.height;
+    var ctx = canvas.getContext("2d");
+    ctx.drawImage(img, 0, 0);
+    var dataURL = canvas.toDataURL("image/png");
+    return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
+}
 
 function GetCheckLeumi(counter, data) {
 
@@ -309,33 +351,4 @@ function getBankElementIds(bankId) {
 
 }
 
-
-//setTimeout(function () {
-
-//    // פועלים  12
-//    $("#userID").val("VD52729");
-//    $("#userPassword").val("Avi056446107");
-//    $("#inputSend")[0].click();
-
-
-
-//     // מרכנטיל 17
-//    $("#tzId").val("dfdfdfdfdf");
-//    $("#tzPassword").val("dfdfdfdfdf");
-//    $("#aidnum").val("dfdfdfdfdf");
-//    $("#submitButton")[0].click();
-
-//    //דיסקונט 11
-//    $("#tzId").val("036450310");
-//    $("#tzPassword").val("dfdfdfdfdf");
-//    $(".sendBtn")[0].click();
-
-
-
-//    // $(".login-button").click();
-//    //tzId
-//    //tzPassword
-//    //log-in-button
-
-//}, 5000)
 

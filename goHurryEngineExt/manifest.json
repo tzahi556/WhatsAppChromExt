@@ -31,7 +31,8 @@
         "https://start.telebank.co.il/*",
         "https://biz2.bankhapoalim.co.il/authenticate/logon/main",
         "https://start.telebank.co.il/apollo/core/templates/lobby/masterPage.html#/LOGIN_PAGE_SME",
-        "https://start.telebank.co.il/apollo/core/templates/SME/masterPage.html#/CHKVEW"
+        "https://start.telebank.co.il/apollo/core/templates/SME/masterPage.html#/CHKVEW",
+        "https://biz2.bankhapoalim.co.il/*"
 
       
       ],
