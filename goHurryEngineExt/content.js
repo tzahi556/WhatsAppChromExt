@@ -92,25 +92,44 @@ $(document).ready(function () {
         // פועלים  הורדה צקים 
         if (location.href.includes("https://biz2.bankhapoalim.co.il/ng-portals/biz/he/current-account/transactions") && $(targetEle) && $($(targetEle))[0].id == "main-title") {
             ArrayChecks = [];
-
             $("IFRAME").remove();
 
-            $(".icon-cell.icon.icon-ActionsChecks").each(function (index) {
-                $(this)[0].click();
+            var data = [];
+            var dataPo = $(".icon-cell.icon.icon-ActionsChecks");//.find("span");
+
+            $(dataPo).each(function (index) {
+
+                if ($(this).parent().text() == " שיק ")
+                    data.push($(this)[0])//.click();
+
 
             });
 
-            setTimeout(function () {
-                $("[id^='check-images-']").each(function (index) {
-                    var CheckNumber = ($(this).attr("id")).replace("check-images-", "");
-                    var Image = $(this).find("img");
-                    var ImageLink = getBase64Image(Image[0]);
-                    ArrayChecks.push({ ImageLink: ImageLink, CheckNumber: $.trim(CheckNumber) });
+            // debugger
+            GetCheckPoalim(0, data);
 
-                });
-                downloadURI(ArrayChecks, false);
 
-            }, 10000);
+
+
+            //$(".icon-cell.icon.icon-ActionsChecks").each(function (index) {
+
+            //    if($(this).parent().text() == " שיק ")
+            //       $(this)[0].click();
+
+
+            //});
+
+            //setTimeout(function () {
+            //    $("[id^='check-images-']").each(function (index) {
+            //        var CheckNumber = ($(this).attr("id")).replace("check-images-", "");
+            //        var Image = $(this).find("img");
+            //        var ImageLink = getBase64Image(Image[0]);
+            //        ArrayChecks.push({ ImageLink: ImageLink, CheckNumber: $.trim(CheckNumber) });
+
+            //    });
+            //    downloadURI(ArrayChecks, false);
+
+            //}, 20000);
 
         }
 
@@ -136,11 +155,11 @@ $(document).ready(function () {
 
                 downloadURI(ArrayChecks, false);
 
-            }, 10000);
+            }, 20000);
 
         }
 
-        // בנקים לאומי הורדה צקים 
+            // בנקים לאומי הורדה צקים 
         else if (location.href.includes("https://hb2.bankleumi.co.il/ebanking/SO") && location.href.includes("BusinessAccountTrx")) {
 
             if (targetEle[0].className == "ts-state-title") {
@@ -154,7 +173,7 @@ $(document).ready(function () {
 
         }
 
-        //צקים מרכנטיל
+            //צקים מרכנטיל
         else if (location.href.includes("https://start.telebank.co.il/apollo/core/templates/SME") && location.href.includes("CHKVEW")) {
 
 
@@ -182,13 +201,13 @@ $(document).ready(function () {
 
 
                     });
-                }, 2000);
+                }, 4000);
 
             }
 
             // }
         }
-        
+
         else {
 
             //*********************************** קוד סיסמא
@@ -254,6 +273,37 @@ function getBase64Image(img) {
     return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
 }
 
+
+function GetCheckPoalim(counter, data) {
+
+    if (counter <= data.length) {
+        setTimeout(function () {
+            try {
+
+                if (counter > 0) {
+                    var element = $("[id^='check-images-']")[counter - 1];
+                    var CheckNumber = ($(element).attr("id")).replace("check-images-", "");
+                    var Image = $(element).find("img");
+                    var ImageLink = getBase64Image(Image[0]);
+                    ArrayChecks.push({ ImageLink: ImageLink, CheckNumber: $.trim(CheckNumber) });
+                    
+                }
+
+                if (counter == data.length) downloadURI(ArrayChecks, false);
+            } catch (e) {
+
+
+
+            }
+            counter++;
+
+            $(data)[counter - 1].click();
+
+            GetCheckPoalim(counter, data);
+        }, 2000);
+    }
+}
+
 function GetCheckLeumi(counter, data) {
 
     if (counter <= data.length) {
@@ -286,7 +336,7 @@ function GetCheckLeumi(counter, data) {
             $(data)[counter - 1].click();
 
             GetCheckLeumi(counter, data);
-        }, 5000);
+        }, 6000);
     }
 }
 
