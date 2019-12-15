@@ -10,7 +10,7 @@ $(document).ready(function () {
     chrome.storage.sync.get(['bankUserName'], function (result) {
 
 
-        chrome.storage.sync.get(['bankId'], function (resultBankId) {
+    chrome.storage.sync.get(['bankId'], function (resultBankId) {
 
             if (result.bankUserName) {
                 setTimeout(function () {

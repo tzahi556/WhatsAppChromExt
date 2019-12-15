@@ -68,6 +68,26 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "almasiExt", "almasiExt\", "
 		VWDPort = "49629"
 	EndProjectSection
 EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "‏‏goHurryEngineExtNew", "‏‏goHurryEngineExtNew\", "{DA721097-E3E4-4B11-B0D8-D6085921854B}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_49793"
+		Debug.AspNetCompiler.PhysicalPath = "‏‏goHurryEngineExtNew\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_49793\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_49793"
+		Release.AspNetCompiler.PhysicalPath = "‏‏goHurryEngineExtNew\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_49793\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "49793"
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -90,6 +110,10 @@ Global
 		{257D0A1B-190B-4E90-96EF-59C22580DB70}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{257D0A1B-190B-4E90-96EF-59C22580DB70}.Release|Any CPU.ActiveCfg = Debug|Any CPU
 		{257D0A1B-190B-4E90-96EF-59C22580DB70}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{DA721097-E3E4-4B11-B0D8-D6085921854B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA721097-E3E4-4B11-B0D8-D6085921854B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA721097-E3E4-4B11-B0D8-D6085921854B}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA721097-E3E4-4B11-B0D8-D6085921854B}.Release|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
