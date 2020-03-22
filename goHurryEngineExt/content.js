@@ -1,9 +1,4 @@
 ﻿
-
-//var bankUserName = "";
-//var bankPassword = "";
-//var MainData = "";
-
 var ArrayChecks = [];
 $(document).ready(function () {
 
@@ -89,13 +84,13 @@ $(document).ready(function () {
 
         var targetEle = $(event.target);
 
-        // פועלים  הורדה צקים 
+       
         if (location.href.includes("https://biz2.bankhapoalim.co.il/ng-portals/biz/he/current-account/transactions") && $(targetEle) && $($(targetEle))[0].id == "main-title") {
             ArrayChecks = [];
             $("IFRAME").remove();
 
             var data = [];
-            var dataPo = $(".icon-cell.icon.icon-ActionsChecks");//.find("span");
+            var dataPo = $(".icon-cell.icon.icon-ActionsChecks");
 
             $(dataPo).each(function (index) {
 
@@ -105,36 +100,13 @@ $(document).ready(function () {
 
             });
 
-            // debugger
+          
             GetCheckPoalim(0, data);
-
-
-
-
-            //$(".icon-cell.icon.icon-ActionsChecks").each(function (index) {
-
-            //    if($(this).parent().text() == " שיק ")
-            //       $(this)[0].click();
-
-
-            //});
-
-            //setTimeout(function () {
-            //    $("[id^='check-images-']").each(function (index) {
-            //        var CheckNumber = ($(this).attr("id")).replace("check-images-", "");
-            //        var Image = $(this).find("img");
-            //        var ImageLink = getBase64Image(Image[0]);
-            //        ArrayChecks.push({ ImageLink: ImageLink, CheckNumber: $.trim(CheckNumber) });
-
-            //    });
-            //    downloadURI(ArrayChecks, false);
-
-            //}, 20000);
 
         }
 
-        // בנקים מזרחי הורדה צקים 
-       else if (location.href.includes("https://mto.mizrahi-tefahot.co.il/ngOnline/") && $(targetEle) && $($(targetEle).parent())[0].className == "sky-page-title") {
+     
+        else if (location.href.includes("https://mto.mizrahi-tefahot.co.il/ngOnline/") && $(targetEle) && $($(targetEle).parent())[0].className == "sky-page-title") {
             ArrayChecks = [];
 
             $(".ng-scope.k-plus.link").each(function (index) {
@@ -159,21 +131,21 @@ $(document).ready(function () {
 
         }
 
-            // בנקים לאומי הורדה צקים 
+           
         else if (location.href.includes("https://hb2.bankleumi.co.il/ebanking/SO") && location.href.includes("BusinessAccountTrx")) {
 
             if (targetEle[0].className == "ts-state-title") {
 
                 ArrayChecks = [];
-                var data = $(".additional-link:visible");//.find("span");
-                // debugger
+                var data = $(".additional-link:visible");
+               
                 GetCheckLeumi(0, data);
 
             }
 
         }
 
-            //צקים מרכנטיל
+          
         else if (location.href.includes("https://start.telebank.co.il/apollo/core/templates/SME") && location.href.includes("CHKVEW")) {
 
 
@@ -210,44 +182,16 @@ $(document).ready(function () {
 
         else {
 
-            //*********************************** קוד סיסמא
             try {
 
                 var eventId = $(event.target).attr('id');
                 if (eventId == "dvOpenBankLink" || eventId == "dvOpenBankImg") {
-
-
                     var bankUserName = $("#txtBankUserName").val();
                     var bankPassword = $("#txtBankPassword").val();
                     var bankId = eval($("#STypeBanks").val());
-
-                    //alert(bankPassword);
-                    //var bankData = [];
-
-                    //bankData.push(bankUserName);
-                    //bankData.push(bankPassword);
-                    //bankData.push(bankId);
-
-                    //var elementsIds = getBankElementIds(bankId);
-                    //bankData.push(elementsIds);
-                    //// מעיד שפעם ראשונה
-                    //bankData.push(1);
-
                     chrome.storage.sync.set({ 'bankUserName': bankUserName }, function () { });
                     chrome.storage.sync.set({ 'bankPassword': bankPassword }, function () { });
                     chrome.storage.sync.set({ 'bankId': bankId }, function () { });
-                    //setCookie('bankUserName', bankUserName,90);
-                    //setCookie('bankPassword', bankPassword,90);
-                    //setCookie('bankId', bankId,90);
-
-
-
-
-
-
-
-
-
                 }
             } catch (e) {
 
@@ -263,8 +207,7 @@ $(document).ready(function () {
 
 function getBase64Image(img) {
     var canvas = document.createElement("canvas");
-    //img.width = img.width + 300;
-    //img.height = img.height + 250;
+   
     canvas.width = img.width;
     canvas.height = img.height;
     var ctx = canvas.getContext("2d");
@@ -272,7 +215,6 @@ function getBase64Image(img) {
     var dataURL = canvas.toDataURL("image/png");
     return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
 }
-
 
 function GetCheckPoalim(counter, data) {
 
@@ -350,15 +292,6 @@ function downloadURI(urlsArray, name1) {
     });
     saveAs(blob, "data.json");
 
-    //  $("<a />", {
-    //      "download": "data.json",
-    //      "href": "data:application/json," + encodeURIComponent(JSON.stringify(urlsArray))
-    //  }).appendTo("body")
-    //.click(function () {
-    //    $(this).remove()
-    //})[0].click()
-
-
 }
 
 var encode = function (s) {
@@ -369,12 +302,8 @@ var encode = function (s) {
     return new Uint8Array(out);
 }
 
-
 function getBankElementIds(bankId) {
     var elemIds = [];
-
-
-    // מזרחי
     if (bankId == "20") {
 
         elemIds.push("#ctl00_PlaceHolderLogin_ctl00_tbUserName");
@@ -382,8 +311,6 @@ function getBankElementIds(bankId) {
         elemIds.push("#ctl00_PlaceHolderLogin_ctl00_Enter");
 
     }
-
-    // לאומי
     if (bankId == "10") {
 
         elemIds.push("#uid");
@@ -391,10 +318,6 @@ function getBankElementIds(bankId) {
         elemIds.push("#enter");
 
     }
-
-
-
-
 
     return elemIds;
 

@@ -1,0 +1,32 @@
+﻿{
+  "manifest_version": 2,
+  "name": "AviGo2Bank",
+  "version": "0.1",
+ 
+   
+  "permissions": [
+		"activeTab",
+		"storage",
+		"webNavigation", 
+		"webRequest",
+    "tabs",
+    "downloads"
+       
+	
+	],
+  "browser_action": {
+   
+    "default_title": "avi go"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "http://www.sganit.co.il/*"
+      
+
+      
+      ],
+      "js": ["jquery.min.js","content.js"]
+    }
+  ]
+}

@@ -1,14 +1,11 @@
 ﻿{
   "manifest_version": 2,
-  "name": "AviGohurryEngine",
+  "name": "Tzahiel New",
   "version": "0.1",
-  "description": "גוהרי חשבונאות",
+  "description": "Tzahiel Calculate Finance Property",
   "icons": {
-    "16": "tab-icon.png",
-    "32": "tab-icon.png",
-    "64": "tab-icon.png",
     "128": "tab-icon.png"
-    
+   
   },
    
   "permissions": [
@@ -33,7 +30,7 @@
 
       
       ],
-      "js": ["jquery.min.js","content.js","FileSaver.js"]
+      "js": ["jquery.min.js","content.js"]
     }
   ]
 }

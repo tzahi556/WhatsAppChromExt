@@ -1,15 +1,8 @@
 ﻿{
   "manifest_version": 2,
-  "name": "GohurryEngine",
-  "version": "2.1",
-  "description": "גוהרי חשבונאות",
-  "icons": {
-    "16": "tab-icon.png",
-    "32": "tab-icon.png",
-    "64": "tab-icon.png",
-    "128": "tab-icon.png"
-    
-  },
+  "name": "AviGo2Bank",
+  "version": "0.2",
+  
    
   "permissions": [
 		"activeTab",
@@ -17,33 +10,17 @@
 		"webNavigation", 
 		"webRequest",
     "tabs",
-    "downloads",
-        "http://www.web-cpa.net/*",
-        "https://web-cpa.net/*",
-        "https://www.web-cpa.net/*",
-        "https://hb2.bankleumi.co.il/*",
-        "https://www.mizrahi-tefahot.co.il/*",
-        "https://mto.mizrahi-tefahot.co.il/*",
-        "https://www.mercantile.co.il/MB/business/*",
-        "http://localhost/GoHurry.Web/*",
-        "https://start.telebank.co.il/LoginPages/Logon?multilang=he&t=O&pageKey=home&bank=m",
-        "https://start.telebank.co.il/*",
-        "https://biz2.bankhapoalim.co.il/authenticate/logon/main",
-        "https://start.telebank.co.il/apollo/core/templates/lobby/masterPage.html#/LOGIN_PAGE_SME",
-        "https://start.telebank.co.il/apollo/core/templates/SME/masterPage.html#/CHKVEW",
-        "https://biz2.bankhapoalim.co.il/*"
+    "downloads"
 	
 	],
   "browser_action": {
-    "default_icon": "tab-icon.png",
-    "default_title": "Have a good day"
+    "default_title": "avi go"
   },
   "content_scripts": [
     {
       "matches": [
         "http://www.web-cpa.net/*",
         "https://web-cpa.net/*",
-        "https://www.web-cpa.net/*",
         "https://hb2.bankleumi.co.il/*",
         "https://www.mizrahi-tefahot.co.il/*",
         "https://mto.mizrahi-tefahot.co.il/*",
