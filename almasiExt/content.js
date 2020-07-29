@@ -11,9 +11,10 @@ $(document).ready(function () {
         var url = window.location.href;
      
         chrome.storage.sync.get(['MsgId'], function (result) {
-            if (url.indexOf("MsgId") == -1 && result.MsgId != MsgId) {
+           
+            if (result.MsgId != MsgId) {
             //if (url.indexOf("MsgId") == -1) {
-
+               
                 generator = window.open(PushAlertsLink, "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,top=100,left=100,width=700,height=400");
                 var audioElement = document.createElement('audio');
                 audioElement.setAttribute('src', 'http://sganit.co.il/AlmasiMp3/Industrial.mp3');
@@ -23,7 +24,7 @@ $(document).ready(function () {
                if (audioElement) audioElement.play();
 
 
-                chrome.storage.sync.set({ 'MsgId': MsgId }, function () { });
+                chrome.storage.sync.set({'MsgId': MsgId}, function () { });
 
 
             }

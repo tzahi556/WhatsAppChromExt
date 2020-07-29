@@ -83,7 +83,6 @@ $(document).ready(function () {
     $(document).click(function (event) {
 
         var targetEle = $(event.target);
-
        
         if (location.href.includes("https://biz2.bankhapoalim.co.il/ng-portals/biz/he/current-account/transactions") && $(targetEle) && $($(targetEle))[0].id == "main-title") {
             ArrayChecks = [];
@@ -104,7 +103,6 @@ $(document).ready(function () {
             GetCheckPoalim(0, data);
 
         }
-
      
         else if (location.href.includes("https://mto.mizrahi-tefahot.co.il/ngOnline/") && $(targetEle) && $($(targetEle).parent())[0].className == "sky-page-title") {
             ArrayChecks = [];
@@ -130,7 +128,6 @@ $(document).ready(function () {
             }, 20000);
 
         }
-
            
         else if (location.href.includes("https://hb2.bankleumi.co.il/ebanking/SO") && location.href.includes("BusinessAccountTrx")) {
 
@@ -144,7 +141,6 @@ $(document).ready(function () {
             }
 
         }
-
           
         else if (location.href.includes("https://start.telebank.co.il/apollo/core/templates/SME") && location.href.includes("CHKVEW")) {
 
